@@ -1,0 +1,142 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+const { title, lang } = Astro.props;
+
+const t = {
+    pt: { projectsTitle: "Projetos Selecionados", footerSub: "Disponível para novos desafios." },
+    en: { projectsTitle: "Selected Projects", footerSub: "Available for new challenges." }
+};
+
+const ui = lang === 'en' ? t.en : t.pt;
+---
+<html lang={lang}>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <ViewTransitions />
+    <style is:global>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+        :root {
+            --bg-light: #f9f9f9;
+            --bg-dark: #0a0a0a;
+            --accent: #ff4d00;
+        }
+        
+        body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg-dark); color: white; overflow-x: hidden; }
+
+        /* INTRO */
+        #intro {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-dark);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 9999;
+            /* A animação só acontece se a classe .active-intro for adicionada */
+        }
+
+        #intro.run-animation {
+            animation: revealSite 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+            animation-delay: 2s;
+        }
+
+        #intro h1 {
+            font-weight: 900; color: white; text-transform: uppercase; opacity: 0;
+        }
+
+        #intro.run-animation h1 {
+            animation: tracking-in-expand 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+        }
+
+        @keyframes tracking-in-expand {
+            0% { letter-spacing: -0.5em; opacity: 0; }
+            40% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes revealSite {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100%); visibility: hidden; }
+        }
+
+        /* DESIGN GERAL */
+        header { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 30px 5%; z-index: 100; box-sizing: border-box; mix-blend-mode: difference; }
+        .logo { font-weight: 900; font-size: 1.2rem; color: white; text-decoration: none; letter-spacing: -1px; }
+        .lang-switcher { display: flex; gap: 10px; font-size: 0.65rem; font-weight: 900; }
+        .lang-switcher a { color: white; text-decoration: none; opacity: 0.4; }
+        .lang-switcher a.active { opacity: 1; text-decoration: underline; }
+        .hero-split { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; }
+        .hero-text { background: var(--bg-light); color: var(--bg-dark); display: flex; flex-direction: column; justify-content: center; padding: 0 10%; }
+        .hero-image { background: #222 url('/minha-foto.jpeg') center center / cover no-repeat; background-position: 50% 20%; position: relative; }
+        .social-sidebar { position: absolute; right: 30px; bottom: 50px; display: flex; flex-direction: column; gap: 20px; z-index: 10; }
+        .social-sidebar a { color: white; text-decoration: none; font-size: 0.7rem; opacity: 0.4; writing-mode: vertical-rl; text-transform: uppercase; letter-spacing: 2px; }
+        .projects-section { padding: 8rem 10% 4rem; background: var(--bg-dark); }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 4rem; }
+        footer { padding: 10vh 10%; background: var(--bg-dark); text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-email { font-size: clamp(2rem, 6vw, 5rem); font-weight: 900; color: white; text-decoration: none; }
+        
+        @media (max-width: 1024px) { .hero-split { grid-template-columns: 1fr; } .hero-image { height: 60vh; order: -1; } }
+    </style>
+</head>
+<body>
+    <div id="intro">
+        <h1>David Abraham.</h1>
+    </div>
+
+    <script is:inline>
+        // Função para controlar a intro
+        function handleIntro() {
+            const intro = document.getElementById('intro');
+            const hasSeenIntro = sessionStorage.getItem('hasSeenIntro');
+
+            if (!hasSeenIntro) {
+                // Primeira vez: roda a animação e salva no histórico da sessão
+                intro.classList.add('run-animation');
+                sessionStorage.setItem('hasSeenIntro', 'true');
+            } else {
+                // Já viu: esconde a intro imediatamente
+                intro.style.display = 'none';
+            }
+        }
+
+        // Executa ao carregar e também quando o Astro troca de página (ViewTransitions)
+        handleIntro();
+        document.addEventListener('astro:after-swap', handleIntro);
+    </script>
+
+    <header>
+        <a href="/" class="logo">DAVID ABRAHAM.</a>
+        <div class="lang-switcher">
+            <a href="/" class={lang === 'pt-br' ? 'active' : ''}>PT</a>
+            <span style="opacity: 0.2">|</span>
+            <a href="/en/" class={lang === 'en' ? 'active' : ''}>EN</a>
+        </div>
+    </header>
+
+    <div class="hero-split">
+        <div class="hero-text">
+            <slot name="hero" />
+        </div>
+        <div class="hero-image">
+            <div class="social-sidebar">
+                <a href="#">LinkedIn</a>
+                <a href="#">Behance</a>
+                <a href="#">Instagram</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="projects-section" id="projects">
+        <h2>{ui.projectsTitle}</h2>
+        <div class="projects-grid">
+            <slot name="projetos" />
+        </div>
+    </section>
+
+    <footer>
+        <p style="color: var(--accent); font-weight: bold; letter-spacing: 2px;">{ui.footerSub}</p>
+        <a href="mailto:seuemail@gmail.com" class="footer-email">seuemail@gmail.com</a>
+    </footer>
+</body>
+</html>
