@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-900: #020617;
+  --color-navy-800: #0a0f24;
+}
+
+:root {
+  --font-inter: 'Inter', sans-serif;
+}
+
+body {
+  background-color: #050505;
+  color: white;
+  font-family: var(--font-inter);
+  overflow-x: hidden;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}

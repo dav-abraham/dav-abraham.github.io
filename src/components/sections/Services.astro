@@ -1,0 +1,63 @@
+---
+const services = [
+  {
+    titlePt: 'Estratégia',
+    titleEn: 'Strategy',
+    descPt: 'Planejamento criativo e identidade visual para posicionar sua marca de forma única no mercado.',
+    descEn: 'Creative planning and visual identity to position your brand uniquely in the market.'
+  },
+  {
+    titlePt: 'Design',
+    titleEn: 'Design',
+    descPt: 'Soluções visuais que unem estética e funcionalidade para resultados reais.',
+    descEn: 'Visual solutions that blend aesthetics and functionality for real results.'
+  },
+  {
+    titlePt: 'Social Media',
+    titleEn: 'Social Media',
+    descPt: 'Criação de conteúdo e gestão estratégica de redes sociais.',
+    descEn: 'Content creation and strategic social media management.'
+  },
+  {
+    titlePt: 'Conteúdo',
+    titleEn: 'Content',
+    descPt: 'Copywriting e materiais editoriais claros, diretos e visualmente impactantes.',
+    descEn: 'Copywriting and clear, direct, and visually impactful editorial materials.'
+  }
+];
+---
+<section class="py-12 px-10 max-w-7xl mx-auto relative">
+    <div class="flex items-center gap-4 mb-16">
+        <h3 
+            class="text-[9px] font-black uppercase tracking-[0.5em] text-zinc-700 italic whitespace-nowrap"
+            data-pt="MINHA ABORDAGEM" 
+            data-en="MY APPROACH"
+        >
+            MINHA ABORDAGEM
+        </h3>
+        <div class="h-[1px] w-full bg-white/5"></div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {services.map(s => (
+            <div class="group relative p-8 rounded-2xl border border-white/[0.05] bg-white/[0.02] backdrop-blur-md transition-all duration-500 hover:bg-white/[0.05] hover:border-white/10 hover:-translate-y-1">
+                <div class="absolute top-0 left-10 right-10 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+                
+                <h4 
+                    class="text-lg font-black uppercase italic tracking-tighter text-white mb-6 group-hover:text-zinc-300 transition-colors duration-500"
+                    data-pt={s.titlePt}
+                    data-en={s.titleEn}
+                >
+                    {s.titlePt}
+                </h4>
+                <p 
+                    class="text-[9px] text-zinc-500 leading-relaxed uppercase tracking-[0.2em] font-bold italic"
+                    data-pt={s.descPt}
+                    data-en={s.descEn}
+                >
+                    {s.descPt}
+                </p>
+            </div>
+        ))}
+    </div>
+</section>

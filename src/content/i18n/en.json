@@ -1,0 +1,17 @@
+{
+  "nav": { "projects": "Projects", "about": "About", "contact": "Contact" },
+  "hero": {
+    "title": "GRAPHIC DESIGNER",
+    "subtitle": "& CONTENT CREATOR",
+    "tagline": "Focused on minimalist and high-impact digital experiences.",
+    "cta": "View Portfolio"
+  },
+  "about": { 
+    "title": "About Me", 
+    "text": "Graphic designer and content creator focused on modern visual solutions. I aim to transform ideas into powerful visual identities." 
+  },
+  "projects": { "title": "Portfolio", "categories": ["Design", "Content"] },
+  "tools": { "title": "Tools" },
+  "services": { "title": "Services", "items": ["Visual Identity", "Social Media", "Editorial Design"] },
+  "contact": { "title": "Contact", "name": "Name", "email": "Email", "message": "Message", "send": "Send Message" }
+}

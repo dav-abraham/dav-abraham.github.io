@@ -1,0 +1,46 @@
+---
+const { lang = 'pt' } = Astro.props;
+const t = lang === 'en' 
+  ? { app: "Applications", brand: "Branding", photo: "Photography" }
+  : { app: "Aplicações", brand: "Branding", photo: "Fotografia" };
+---
+
+<section class="w-full py-24 bg-[#0a0a0a] min-h-screen">
+  <div class="max-w-7xl mx-auto px-6">
+    
+    <div class="flex justify-center mb-16">
+      <nav class="inline-flex p-1 bg-zinc-900 rounded-full border border-white/5 shadow-2xl">
+        <button class="tab-btn active px-10 py-3 rounded-full text-[10px] font-black uppercase tracking-[0.3em] transition-all bg-white text-black shadow-[0_0_25px_rgba(255,255,255,0.1)]" data-target="app">
+          {t.app}
+        </button>
+        <button class="tab-btn px-10 py-3 rounded-full text-[10px] font-black uppercase tracking-[0.3em] transition-all text-zinc-500 hover:text-white" data-target="brand">
+          {t.brand}
+        </button>
+        <button class="tab-btn px-10 py-3 rounded-full text-[10px] font-black uppercase tracking-[0.3em] transition-all text-zinc-500 hover:text-white" data-target="photo">
+          {t.photo}
+        </button>
+      </nav>
+    </div>
+
+    <div id="panel-app" class="tab-panel grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+      <div class="group bg-zinc-900/50 border border-white/5 p-5 rounded-[40px] hover:border-white/20 transition-all duration-500">
+        <div class="aspect-[4/5] overflow-hidden rounded-[30px] bg-zinc-800">
+          <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" />
+        </div>
+        <div class="pt-8 pb-4 px-2">
+          <h3 class="text-white text-xl font-black uppercase tracking-tighter italic">Modern UI</h3>
+          <p class="text-[9px] text-zinc-500 uppercase tracking-[0.2em] mt-2 font-bold">Case Study / 2026</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .tab-panel { animation: slideUp 0.8s ease-out; }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>

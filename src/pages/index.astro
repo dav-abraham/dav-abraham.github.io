@@ -1,28 +1,9 @@
 ---
+import Tools from '../components/sections/Tools.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import CardProjeto from '../components/CardProjeto.astro';
+import Portfolio from '../components/Portfolio.astro';
 ---
 
-<BaseLayout title="David | Designer de Soluções" lang="pt-br">
-    
-    <div slot="hero">
-        <span style="color: var(--accent); font-weight: bold; letter-spacing: 3px;">OLÁ</span>
-        <h1>Eu sou o David Abraham,<br>designer de soluções<br>baseado no Brasil.</h1>
-        <div style="margin-top: 40px; display: flex; gap: 20px;">
-            <a href="#projects" style="background: black; color: white; padding: 15px 30px; text-decoration: none; font-weight: bold; font-size: 0.8rem;">MEUS TRABALHOS</a>
-            <a href="mailto:contato@seuemail.com" style="border: 1px solid black; color: black; padding: 15px 30px; text-decoration: none; font-weight: bold; font-size: 0.8rem;">CONTATO</a>
-        </div>
-    </div>
-
-    <div slot="projetos">
-        <CardProjeto 
-            titulo="Redesign E-commerce" 
-            descricao="Focado em conversão e experiência premium." 
-        />
-        <CardProjeto 
-            titulo="Branding Startup" 
-            descricao="Identidade visual minimalista." 
-        />
-    </div>
-
+<BaseLayout title="David Abraham | Portfolio">
+    <Portfolio />
 </BaseLayout>

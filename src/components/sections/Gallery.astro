@@ -1,0 +1,81 @@
+---
+import { getCollection } from 'astro:content';
+const allProjectEntries = await getCollection('projects');
+const projects = allProjectEntries.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
+
+const categories = ["all", ...new Set(projects.map(p => p.data.category))];
+---
+
+<section id="projetos" class="px-10 max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+        <div>
+            <h3 class="text-[10px] font-black uppercase tracking-[0.5em] text-zinc-800 italic mb-2">PORTFOLIO</h3>
+            <h2 class="text-4xl md:text-6xl font-black uppercase italic tracking-tighter" data-pt="Projetos Selecionados" data-en="Selected Projects">
+                Projetos Selecionados
+            </h2>
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+            {categories.map(cat => (
+                <button 
+                    class="filter-btn text-[10px] font-black tracking-widest uppercase py-2 px-6 border border-white/10 rounded-full hover:bg-white hover:text-black transition-all"
+                    data-filter={cat}
+                >
+                    {cat === 'all' ? ( <span data-pt="Todos" data-en="All">Todos</span> ) : cat}
+                </button>
+            ))}
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 transition-all duration-500" id="project-grid">
+        {projects.map(p => (
+            <div class="project-card group" data-category={p.data.category}>
+                <div class="aspect-[4/5] p-2 rounded-[32px] bg-zinc-900/40 border border-white/5 hover:border-white/20 transition-all duration-500 flex flex-col overflow-hidden">
+                    
+                    {/* Container da Imagem com efeito Mix-Blend */}
+                    <div class="flex-1 overflow-hidden rounded-[24px] bg-zinc-800/50 flex items-center justify-center relative">
+                        <img 
+                            src={p.data.img} 
+                            alt={p.data.pt}
+                            class="w-full h-full object-contain p-4 group-hover:scale-110 transition-all duration-700 ease-out mix-blend-lighten" 
+                        />
+                    </div>
+                    
+                    {/* Infos mais discretas e elegantes */}
+                    <div class="pt-4 pb-4 px-4">
+                        <p class="text-[8px] font-bold uppercase tracking-[0.2em] text-zinc-500 mb-1" data-pt={p.data.sub_pt} data-en={p.data.sub_en}>
+                            {p.data.sub_pt}
+                        </p>
+                        <h4 class="text-white text-xs font-black uppercase italic tracking-tighter leading-tight" data-pt={p.data.pt} data-en={p.data.en}>
+                            {p.data.pt}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        ))}
+    </div>
+</section>
+
+<script>
+    const buttons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.project-card');
+    const allBtn = document.querySelector('[data-filter="all"]');
+    if (allBtn) allBtn.classList.add('bg-white', 'text-black');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const filter = btn.getAttribute('data-filter');
+            buttons.forEach(b => b.classList.remove('bg-white', 'text-black'));
+            btn.classList.add('bg-white', 'text-black');
+
+            cards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                if (filter === 'all' || filter === category) {
+                    (card as HTMLElement).style.display = 'block';
+                } else {
+                    (card as HTMLElement).style.display = 'none';
+                }
+            });
+        });
+    });
+</script>

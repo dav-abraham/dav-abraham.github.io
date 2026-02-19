@@ -1,0 +1,41 @@
+---
+const tools = [
+  { name: 'Photoshop', src: '/images/logos/adobe-photoshop.svg' },
+  { name: 'Illustrator', src: '/images/logos/adobe-illustrator.svg' },
+  { name: 'Lightroom', src: '/images/logos/adobe-lightroom.svg' },
+  { name: 'Premiere Pro', src: '/images/logos/adobe-premiere.svg' },
+  { name: 'InDesign', src: '/images/logos/adobe-indesign.svg' },
+  { name: 'CapCut', src: '/images/logos/capcut.svg' },
+  { name: 'Canva', src: '/images/logos/canva.svg' },
+  { name: 'Figma', src: '/images/logos/figma.svg' }
+];
+---
+<section class="py-6 px-10 max-w-4xl mx-auto relative">
+    <div class="flex items-center gap-4 mb-8">
+        <h3 
+            class="text-[9px] font-black uppercase tracking-[0.5em] text-zinc-800 italic whitespace-nowrap"
+            data-pt="SOFTWARE & FERRAMENTAS" 
+            data-en="SOFTWARE & TOOLS"
+        >
+            SOFTWARE & FERRAMENTAS
+        </h3>
+        <div class="h-[1px] w-full bg-white/5"></div>
+    </div>
+
+    <div class="grid grid-cols-4 lg:grid-cols-8 gap-y-8 gap-x-6 items-center justify-items-center">
+        {tools.map(tool => (
+            <div class="group flex flex-col items-center gap-2">
+                <div class="h-8 w-8 flex items-center justify-center transition-all duration-500 group-hover:scale-110">
+                    <img 
+                        src={tool.src} 
+                        alt={tool.name} 
+                        class="max-h-full max-w-full object-contain opacity-40 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500"
+                    />
+                </div>
+                <span class="text-[7px] font-black uppercase tracking-[0.2em] text-zinc-600 group-hover:text-white transition-colors duration-300">
+                    {tool.name}
+                </span>
+            </div>
+        ))}
+    </div>
+</section>

@@ -1,0 +1,17 @@
+{
+  "nav": { "projects": "Projetos", "about": "Sobre", "contact": "Contato" },
+  "hero": {
+    "title": "DESIGNER GRÁFICO",
+    "subtitle": "& CONTEUDISTA",
+    "tagline": "Focado em experiências digitais minimalistas e de alto impacto.",
+    "cta": "Ver Portfólio"
+  },
+  "about": { 
+    "title": "Sobre Mim", 
+    "text": "Designer gráfico e conteudista com foco em soluções visuais modernas. Busco transformar ideias em identidades visuais potentes e conteúdos que engajam." 
+  },
+  "projects": { "title": "Portfólio", "categories": ["Design", "Conteúdo"] },
+  "tools": { "title": "Ferramentas" },
+  "services": { "title": "Serviços", "items": ["Identidade Visual", "Social Media", "Design Editorial"] },
+  "contact": { "title": "Contato", "name": "Nome", "email": "E-mail", "message": "Mensagem", "send": "Enviar Mensagem" }
+}
