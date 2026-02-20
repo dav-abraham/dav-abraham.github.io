@@ -3,8 +3,10 @@ import '../styles/global.css';
 ---
 <html lang="pt" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8" /><title>David Abraham</title>
+    <meta charset="UTF-8" />
+    <title>David Abraham</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap" rel="stylesheet">
     <style>
         @keyframes introReveal {
@@ -53,13 +55,13 @@ import '../styles/global.css';
         // Controle de Intro
         const intro = document.getElementById('intro');
         if (sessionStorage.getItem('introPlayed')) {
-            intro.style.display = 'none';
+            if (intro) intro.style.display = 'none';
         } else {
             sessionStorage.setItem('introPlayed', 'true');
-            setTimeout(() => { intro.style.display = 'none'; }, 3000);
+            setTimeout(() => { if (intro) intro.style.display = 'none'; }, 3000);
         }
 
-        // Navbar Camaleão no Scroll
+        // Navbar Camaleão
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 50) {
@@ -69,20 +71,19 @@ import '../styles/global.css';
             }
         });
 
-        // Tradução Instantânea (Resolve o problema do Inglês)
+        // Tradução Corrigida (Resolve Placeholder e Texto)
         window.changeLang = (lang) => {
-    document.querySelectorAll("[data-pt]").forEach(el => { 
-        const translation = lang === "en" ? el.getAttribute("data-en") : el.getAttribute("data-pt"); 
-        if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") { 
-            el.setAttribute("placeholder", translation); 
-        } else { 
-            if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") { el.setAttribute("placeholder", translation); } else { el.innerHTML = translation; } 
-        } 
-    });
             localStorage.setItem("user-lang", lang);
-            document.querySelectorAll('[data-pt]').forEach(el => {
-                el.innerText = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-pt');
+            document.querySelectorAll("[data-pt]").forEach(el => {
+                const translation = lang === "en" ? el.getAttribute("data-en") : el.getAttribute("data-pt");
+                
+                if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+                    el.setAttribute("placeholder", translation);
+                } else {
+                    el.innerHTML = translation;
+                }
             });
+
             // Atualiza botões
             const btnPt = document.getElementById('btn-pt');
             const btnEn = document.getElementById('btn-en');
@@ -94,12 +95,11 @@ import '../styles/global.css';
                 btnEn.className = 'px-4 py-2 rounded-full text-[9px] font-black transition-all text-zinc-500';
             }
         };
-        // Detecção Automática de Idioma 
-        window.addEventListener("DOMContentLoaded", () => { 
-            const savedLang = localStorage.getItem("user-lang"); 
-            const browserLang = navigator.language.toLowerCase().startsWith("en") ? "en" : "pt"; 
-            const langToApply = savedLang || browserLang; 
-            if (langToApply === "en") changeLang("en"); 
+
+        // Inicialização
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedLang = localStorage.getItem("user-lang") || (navigator.language.startsWith("en") ? "en" : "pt");
+            window.changeLang(savedLang);
         });
     </script>
 </body>
