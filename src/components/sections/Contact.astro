@@ -3,34 +3,46 @@
 <section id="contato" class="px-10 max-w-7xl mx-auto py-24 border-t border-white/5">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
         <div>
-            <h3 class="text-[10px] font-black uppercase tracking-[0.5em] text-zinc-800 italic mb-4">CONTATO</h3>
+            <h3 class="text-[10px] font-black uppercase tracking-[0.5em] text-zinc-800 italic mb-4" 
+                data-pt="CONTATO" data-en="CONTACT">CONTATO</h3>
             <h2 class="text-5xl font-black uppercase italic tracking-tighter mb-8 leading-none">
-                Vamos criar<br/>algo novo?
+                <span data-pt="Vamos criar" data-en="Let's create">Vamos criar</span><br/>
+                <span data-pt="algo novo?" data-en="something new?">algo novo?</span>
             </h2>
-            <p class="text-zinc-500 text-sm max-w-xs mb-8">
+            <p class="text-zinc-500 text-sm max-w-xs mb-8"
+               data-pt="Disponível para novos projetos e consultoria em design institucional e social media."
+               data-en="Available for new projects and consultancy in institutional design and social media.">
                 Disponível para novos projetos e consultoria em design institucional e social media.
             </p>
-            <div class="space-y-2">
-            </div>
         </div>
 
         <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
             <input type="hidden" name="access_key" value={import.meta.env.PUBLIC_FORM_KEY}>
-            
             <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
             <div class="grid grid-cols-2 gap-4">
-                <input type="text" name="name" required placeholder="NOME" class="bg-zinc-900/50 border border-white/5 p-4 rounded-2xl text-[10px] font-black tracking-widest text-white focus:border-white/20 outline-none transition-all" />
-                <input type="email" name="email" required placeholder="E-MAIL" class="bg-zinc-900/50 border border-white/5 p-4 rounded-2xl text-[10px] font-black tracking-widest text-white focus:border-white/20 outline-none transition-all" />
+                <input type="text" name="name" required 
+                    placeholder="NOME" data-pt="NOME" data-en="NAME"
+                    class="bg-zinc-900/50 border border-white/5 p-4 rounded-2xl text-[10px] font-black tracking-widest text-white focus:border-white/20 outline-none transition-all" />
+                
+                <input type="email" name="email" required 
+                    placeholder="E-MAIL" data-pt="E-MAIL" data-en="EMAIL"
+                    class="bg-zinc-900/50 border border-white/5 p-4 rounded-2xl text-[10px] font-black tracking-widest text-white focus:border-white/20 outline-none transition-all" />
             </div>
             
-            <input type="text" name="subject" placeholder="ASSUNTO" class="w-full bg-zinc-900/50 border border-white/5 p-4 rounded-2xl text-[10px] font-black tracking-widest text-white focus:border-white/20 outline-none transition-all" />
+            <input type="text" name="subject" 
+                placeholder="ASSUNTO" data-pt="ASSUNTO" data-en="SUBJECT"
+                class="w-full bg-zinc-900/50 border border-white/5 p-4 rounded-2xl text-[10px] font-black tracking-widest text-white focus:border-white/20 outline-none transition-all" />
             
-            <textarea name="message" required rows="4" placeholder="SUA MENSAGEM" class="w-full bg-zinc-900/50 border border-white/5 p-4 rounded-2xl text-[10px] font-black tracking-widest text-white focus:border-white/20 outline-none transition-all resize-none"></textarea>
+            <textarea name="message" required rows="4" 
+                placeholder="SUA MENSAGEM" data-pt="SUA MENSAGEM" data-en="YOUR MESSAGE"
+                class="w-full bg-zinc-900/50 border border-white/5 p-4 rounded-2xl text-[10px] font-black tracking-widest text-white focus:border-white/20 outline-none transition-all resize-none"></textarea>
             
             <input type="hidden" name="redirect" value="https://web3forms.com/success">
 
-            <button type="submit" class="w-full py-5 bg-white text-black text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl hover:bg-zinc-200 transition-all">
+            <button type="submit" 
+                class="w-full py-5 bg-white text-black text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl hover:bg-zinc-200 transition-all"
+                data-pt="ENVIAR MENSAGEM" data-en="SEND MESSAGE">
                 ENVIAR MENSAGEM
             </button>
         </form>

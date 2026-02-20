@@ -71,6 +71,15 @@ import '../styles/global.css';
 
         // Tradução Instantânea (Resolve o problema do Inglês)
         window.changeLang = (lang) => {
+    document.querySelectorAll("[data-pt]").forEach(el => { 
+        const translation = lang === "en" ? el.getAttribute("data-en") : el.getAttribute("data-pt"); 
+        if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") { 
+            el.setAttribute("placeholder", translation); 
+        } else { 
+            if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") { el.setAttribute("placeholder", translation); } else { el.innerHTML = translation; } 
+        } 
+    });
+            localStorage.setItem("user-lang", lang);
             document.querySelectorAll('[data-pt]').forEach(el => {
                 el.innerText = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-pt');
             });
@@ -85,6 +94,13 @@ import '../styles/global.css';
                 btnEn.className = 'px-4 py-2 rounded-full text-[9px] font-black transition-all text-zinc-500';
             }
         };
+        // Detecção Automática de Idioma 
+        window.addEventListener("DOMContentLoaded", () => { 
+            const savedLang = localStorage.getItem("user-lang"); 
+            const browserLang = navigator.language.toLowerCase().startsWith("en") ? "en" : "pt"; 
+            const langToApply = savedLang || browserLang; 
+            if (langToApply === "en") changeLang("en"); 
+        });
     </script>
 </body>
 </html>
