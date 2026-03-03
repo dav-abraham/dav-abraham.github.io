@@ -1,15 +1,23 @@
 ---
-const { titulo, descricao, imagem = "/projeto-placeholder.jpg" } = Astro.props;
+// Adicionamos 'url' aqui para o componente aceitar o endereço do link
+const { titulo, descricao, imagem = "/projeto-placeholder.jpg", url = "#" } = Astro.props;
 ---
-<div class="card">
-    <div class="foto" style={`background-image: url('${imagem}')`}></div>
-    <div class="conteudo">
-        <h3>{titulo}</h3>
-        <p>{descricao}</p>
+<a href={url} class="card-link">
+    <div class="card">
+        <div class="foto" style={`background-image: url('${imagem}')`}></div>
+        <div class="conteudo">
+            <h3>{titulo}</h3>
+            <p>{descricao}</p>
+        </div>
     </div>
-</div>
+</a>
 
 <style>
+    .card-link {
+        text-decoration: none; /* Remove o sublinhado azul de link */
+        display: block;
+        color: inherit;
+    }
     .card {
         background: rgba(255, 255, 255, 0.03);
         border: 1px solid rgba(255, 255, 255, 0.1);
@@ -20,7 +28,7 @@ const { titulo, descricao, imagem = "/projeto-placeholder.jpg" } = Astro.props;
     }
     .card:hover {
         transform: translateY(-10px);
-        border-color: var(--accent);
+        border-color: #ffffff; /* Ou sua cor de destaque */
         background: rgba(255, 255, 255, 0.07);
     }
     .foto {
