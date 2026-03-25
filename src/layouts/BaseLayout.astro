@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 ---
-<html lang="pt" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8" />
     <title>David Abraham</title>
@@ -98,9 +98,9 @@ import '../styles/global.css';
 
         // Inicialização
         document.addEventListener("DOMContentLoaded", () => {
-            const savedLang = localStorage.getItem("user-lang") || (navigator.language.startsWith("en") ? "en" : "pt");
-            window.changeLang(savedLang);
-        });
+    const savedLang = localStorage.getItem("user-lang") || "en"; 
+    window.changeLang(savedLang);
+});
     </script>
 </body>
 </html>
